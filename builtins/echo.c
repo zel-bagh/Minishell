@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 10:57:05 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/10/16 17:00:48 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:17:40 by mbani            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,28 @@ void	ft_write(int i, int n, char **argv)
 	}
 }
 
+int	checkfor_n(char *p)
+{
+	int i;
+
+	i = 1;
+	if (p[0] == '-' && p[1] == 'n')
+	{
+		while (p[++i] != '\0')
+			if(p[i] != 'n')
+				return (0);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
-	int	i;
-
-	i = 2;
-	if (argc == 1)
-		printf("\n");
-	else
+	if (argc == 1 || (argc > 1 && !checkfor_n(argv[1])))
 	{
-		if (ft_str_compare(argv[1], "-n"))
-			ft_write(2, argc - 2, argv);
-		else
-		{
-			ft_write(1, argc - 1, argv);
-			printf("\n");
-		}
+		ft_write(1, argc - 1, argv);
+		printf("\n");
 	}
+	else
+		ft_write(2, argc - 2, argv);
 }
