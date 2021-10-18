@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 10:14:26 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/10/16 10:18:49 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:09:29 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	main(int argc, char **argv)
 	int		fd0;
 	int		fd1;
 
-	function() && pipe(k);
+	pipe(k);
+	fd0 = 36;
+	write(k[1], &fd0, 4);
+	fd0 = 4;
+	write(k[1], &fd0, 4);
+	write(1, k[0], )
+	
 	printf("yo it has passed");
 }
