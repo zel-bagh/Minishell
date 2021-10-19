@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include<stdio.h>
 #include<fcntl.h>
+#include <errno.h>
+
 typedef struct	s_redirections
 {
 	char					*file;
