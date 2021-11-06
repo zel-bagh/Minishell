@@ -2,11 +2,11 @@
 #include <readline/history.h>
 
 
-int main()
+int main(int argc, char **argv)
 {
     char *p;
     char a[100];
+    int d;
 
-     read(0, a, 10);
-    write(1, a, 10);
+   open("./", O_WRONLY |, 0644);
 }

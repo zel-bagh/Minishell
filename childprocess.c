@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/10/24 09:20:58 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/06 13:17:03 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	get_input_output(t_red* red, int *input, int *output)
 	{
 		if (*output)
 			close(*output);
-		open_files(red,input, output);
+		open_files(red, input, output);
 	}
 	if (red->type == 3)
 	{
 		if (*input)
 			close(*input);
-		open_files(red,input, output);
+		open_files(red, input, output);
 	}
 }
 
@@ -106,5 +106,5 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw)
 	else
 		if (cmd->next != NULL)
 			dup2(fdw[1], STDOUT_FILENO);
-	execve(*cmd->args, cmd->args + 1, NULL);
+	execve(*cmd->args, cmd->args, NULL);
 }
