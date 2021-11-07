@@ -37,6 +37,7 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw);
 void	heredoc(t_red *red, t_hdoc *hdoc);
 void	print_open_failing_reason(t_red *red);
 void	execute_command(t_cmd *cmd);
+void    execute(char *executable, char **arguments);
 
 #endif
 

@@ -4,4 +4,5 @@ int main()
 {
         printf("yahho");
 }
-permission denied   <=
+make env;
+search for executable in env;

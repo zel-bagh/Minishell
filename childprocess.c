@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/06 16:12:25 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/07 10:52:19 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 	int		index;
 
 	i = -1;
-	errno = 0;
 	index = -1;
 	heredoc(red, &hdoc);
+	errno = 0;
 	while (++i >= 0)
 	{
 		if (red->type == 3)
@@ -76,7 +76,7 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 		if (red->type != 4)
 			get_input_output(red, input, output);
 		if (errno)
-			print_open_failing_reason(red->file, NULL);
+			print_open_failing_reason(red->file);
 		if (red->next == NULL)
 			break ;
 		red = red->next;
@@ -103,7 +103,5 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw)
 	else
 		if (cmd->next != NULL)
 			dup2(fdw[1], STDOUT_FILENO);
-	errno = 0;
-	check_executable(cmd->args[0]);
-	execve(*cmd->args, cmd->args, NULL);
+	execute(*cmd->args, cmd->args);
 }

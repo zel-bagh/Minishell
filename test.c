@@ -15,12 +15,11 @@ int main(int argc, char **argv)
     char a[100];
     int i;
 
-    // p[0] = "./yo.c";
-    // p[1] = NULL;
+    p[0] = "./yo.c";
+    p[1] = NULL;
 
     // i = execve("./a.out", p, NULL);
     // printf("i == %d\n", errno);
-
-    open(".", O_WRONLY, 0644);
-    printf("errno == %d", errno);
+    i = execve("./khikho", p, NULL);
+    printf("i == %d\n",errno);
 }

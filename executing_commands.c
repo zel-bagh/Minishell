@@ -6,45 +6,40 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/06 16:38:24 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/07 10:45:55 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	print_open_failing_reason(char *red, char *executable)
+// {
+// 		else
+// 	{
+// 		if (errno == 2)
+// 		{
+// 			printf("minishell: %s: No such file or directory\n", executable);
+// 			exit(127);
+// 		}
+// 		else if (errno == 21)
+// 		{
+// 			if (*executable == '.' && *executable == '\0')
+// 				printf("minishell: .: filename argument required\n.: usage: . filename [arguments]");
+// 			else
+// 				printf("minishell: %s: is a directory\n", executable);
+// 			exit(126);
+// 		}
+// 		exit(-2);
+// 	}
+// }
+void	print_open_failing_reason(char *file)
 {
-	if (red)
-	{
-		if (errno == 2)
-		{
-			printf("minishell: %s: No such file or directory\n", red);
-			exit(1);
-		}
-		else if (errno == 21)
-		{
-			printf("minishell: %s: is a directory\n", red);
-			exit(1);
-		}
-		exit(-1);
-	}
-	else
-	{
-		if (errno == 2)
-		{
-			printf("minishell: %s: No such file or directory\n", executable);
-			exit(127);
-		}
-		else if (errno == 21)
-		{
-			if (*executable == '.' && *executable == '\0')
-				printf("minishell: .: filename argument required\n.: usage: . filename [arguments]");
-			else
-				printf("minishell: %s: is a directory\n", executable);
-			exit(126);
-		}
-		exit(-2);
-	}
+	if (errno == 2)
+		printf("minishell: %s: No such file or directory\n", file);
+	else if (errno == 21)
+		printf("minishell: %s: is a directory\n", file);
+	else if (errno == 13)
+		printf("minishell: permission denied: %s\n", file);
+	exit (1);
 }
 
 int	close_fd_pipes(t_cmd *next, int *fdr, int *fdw)
