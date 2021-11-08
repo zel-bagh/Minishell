@@ -33,10 +33,11 @@ int		ft_strlen(const char *a);
 char*	ft_strjoin(const char *a, const char *b);
 int		ft_str_compare(const char* a, const char* b);
 char*	get_input();
-void	child_work(t_cmd *cmd, int *fdr, int *fdw);
-void	heredoc(t_red *red, t_hdoc *hdoc);
-void	print_open_failing_reason(t_red *red);
 void	execute_command(t_cmd *cmd);
+void	child_work(t_cmd *cmd, int *fdr, int *fdw, int exit_status);
+void	heredoc(t_red *red, t_hdoc *hdoc);
+void	print_open_failing_reason(char *file);
+void	change_args_with_exit_status(char **args, int exit_status);
 void    execute(char *executable, char **arguments);
 
 #endif
