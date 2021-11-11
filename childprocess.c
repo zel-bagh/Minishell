@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/08 11:52:10 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:03:52 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 		if (red->type == 3)
 			index = i;
 		if (red->type != 4)
+		{
+			check_file_error(red->file);
 			get_input_output(red, input, output);
+		}
 		if (errno)
 			print_open_failing_reason(red->file);
 		if (red->next == NULL)
@@ -84,7 +87,7 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 	setting_final_input(hdoc, index, input);
 }
 
-void	child_work(t_cmd *cmd, int *fdr, int *fdw, int exit_status)
+void	child_work(t_cmd *cmd, int *fdr, int *fdw)
 {
 	int	input;
 	int output;
@@ -103,6 +106,5 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw, int exit_status)
 	else
 		if (cmd->next != NULL)
 			dup2(fdw[1], STDOUT_FILENO);
-	change_args_with_exit_status(cmd->args + 1, exit_status);
 	execute(*cmd->args, cmd->args);
 }

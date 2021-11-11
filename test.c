@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 
     // i = execve("./a.out", p, NULL);
     // printf("i == %d\n", errno);
-    i = execve("./khikho", p, NULL);
+    //i = execve("./khikho", p, NULL);
+    open("directory", O_RDONLY | O_APPEND);
     printf("i == %d\n",errno);
 }
