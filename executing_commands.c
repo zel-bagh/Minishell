@@ -6,11 +6,21 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/13 12:05:36 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:31:48 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
+
+void	wait_for_children(int id, int *exit_status, int fnc_exit, char	*exctble)
+{
+	if(ft_str_compare(exctble, "export") || ft_str_compare(exctble, "cd"))
+		*exit_status = fnc_exit;
+	else
+		waitpid(id, exit_status, 0);
+	while(wait(NULL) != -1)
+		continue;
+}
 
 int	close_fd_pipes(t_cmd *next, int *fdr, int *fdw)
 {	
@@ -44,9 +54,7 @@ int	execute_command(t_cmd *cmd, int *exit_status)
 		}
 		if (close_fd_pipes(cmd->next, fdr, fdw))
 		{
-			waitpid(id, exit_status, 0);
-			while(wait(NULL) != -1)
-				continue;
+			wait_for_children(id, exit_status, fnc_exit, cmd->args[0]);
 			break ;
 		}
 		close(fdr[1]);
