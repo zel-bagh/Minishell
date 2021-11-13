@@ -12,13 +12,18 @@ void    function()
 int main(int argc, char **argv)
 {
     char **p = malloc(2 * sizeof(char *));
-    char a[100];
+    int a[100];
     int i;
 
     p[0] = "./yo.c";
     p[1] = NULL;
 
-    // i = execve("./a.out", p, NULL);
+    pipe(a);
+    dup2(1,a[1]);
+    dup2(0,a[0]);
+
+
+    while(1);// i = execve("./a.out", p, NULL);
     // printf("i == %d\n", errno);
     //i = execve("./khikho", p, NULL);
     open("directory", O_RDONLY | O_APPEND);
