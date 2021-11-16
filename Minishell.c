@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:12:19 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 14:48:27 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:55:30 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,30 @@ int		main(int argc, char **argv, char **env)
 	cmd->args[3]= NULL;
 	cmd->next = NULL;//cmd + 1;
 	cmd->prev = NULL;
-	cmd->red =malloc(4 * sizeof(t_red));
+	cmd->red = malloc(4 * sizeof(t_red));
 {{
 		
-		(cmd)->red->file = "stop";
-		(cmd)->red->type = 4;
-		(cmd)->red->next = (cmd)->red+1;
+		(cmd)->red->file = "write.c";
+		(cmd)->red->type = 3;
+		(cmd)->red->next =(cmd)->red+1;
 		
 (cmd)->red = (cmd)->red + 1;
-		(cmd)->red->file = "Miasdfafaasddadadsasll.c";
+		(cmd)->red->file = "yo.c";
+		(cmd)->red->type = 2;
+		(cmd)->red->next = NULL;//(cmd)->red+1;
+		
+
+(cmd)->red = (cmd)->red + 1;
+		(cmd)->red->file = "/stop";
 		(cmd)->red->type = 2;
 		(cmd)->red->next = (cmd)->red+1;
-		
 
 (cmd)->red = (cmd)->red + 1;
 		(cmd)->red->file = "yo.c";
 		(cmd)->red->type = 3;
 		(cmd)->red->next = NULL;
 		
- 		(cmd)->red = (cmd)->red - 2;
-
-
-	
+ 		(cmd)->red = (cmd)->red - 3;	
 }}
 
 
@@ -94,4 +96,5 @@ int		main(int argc, char **argv, char **env)
 	(cmd+2)->prev = cmd + 1;
 
 	execute_command(cmd, &exit_status, env);
+	printf("exit status is %d\n", exit_status);
 }

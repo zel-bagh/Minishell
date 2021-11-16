@@ -77,3 +77,4 @@ int	main(void)
 
 	return ((i = 1) == 1);
 }
+zak

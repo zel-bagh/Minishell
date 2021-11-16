@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 10:04:37 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:57:41 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 	setting_final_input(hdoc, index, input);
 }
 
-void	child_work(t_cmd *cmd, int *fdr, int *fdw)
+void	child_work(t_cmd *cmd, int *fdr, int *fdw, char **env)
 {
 	int	input;
 	int output;
@@ -107,5 +107,5 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw)
 	else
 		if (cmd->next != NULL)
 			dup2(fdw[1], STDOUT_FILENO);
-	execute(*cmd->args, cmd->args);
+	execute(*cmd->args, cmd->args, env);
 }

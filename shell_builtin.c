@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 16:29:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 14:44:12 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:56:19 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int export(char **args, int input, int output, char **env)
     char a[5];
 
     args =0;
-    a[4] = '\0';
+    //a[4] = '\0';
     env = 0;
+
     read(input, a, 4);
-    write(output, a, 5);
+    write(output, a, 4);
     return (0);
 }
 

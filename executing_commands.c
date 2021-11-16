@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 09:53:21 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:57:16 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	execute_command(t_cmd *cmd, int *exit_status, char **env)
 		{
 			id = fork();	
 			if (id == 0)
-				child_work(cmd, fdr, fdw);
+				child_work(cmd, fdr, fdw, env);
 		}
 		if (close_fd_pipes(cmd->next, fdr, fdw))
 		{

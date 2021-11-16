@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 13:48:32 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 10:07:26 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:58:36 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 //     exit(-4);
 // }
 
-void    execute(char *executable, char **arguments)
+void    execute(char *executable, char **arguments, char **env)
 {
     // int i;
     // int fd;
