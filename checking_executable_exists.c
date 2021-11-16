@@ -6,26 +6,26 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 13:48:32 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/08 12:18:16 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:07:26 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void    execute_2()
-{
-    if (errno == 13)
-    {
-        printf("minishell: %s: Permission denied");
-        exit(126);
-    }
-    if (errno == 2)
-    {
-        printf("minishell: %s: No such file or directory");
-        exit(127);
-    }
-    exit(-4);
-}
+// void    execute_2()
+// {
+//     if (errno == 13)
+//     {
+//         printf("minishell: %s: Permission denied");
+//         exit(126);
+//     }
+//     if (errno == 2)
+//     {
+//         printf("minishell: %s: No such file or directory");
+//         exit(127);
+//     }
+//     exit(-4);
+// }
 
 void    execute(char *executable, char **arguments)
 {

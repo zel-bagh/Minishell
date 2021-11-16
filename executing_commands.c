@@ -6,16 +6,19 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/13 16:31:48 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:53:21 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	wait_for_children(int id, int *exit_status, int fnc_exit, char	*exctble)
+void	wait_for_children(int id, int *exit_status, char *exec)
 {
-	if(ft_str_compare(exctble, "export") || ft_str_compare(exctble, "cd"))
-		*exit_status = fnc_exit;
+	if (ft_str_compare(exec, "export") ||
+    ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
+     || ft_str_compare(exec, "CD") ||
+      ft_str_compare(exec, "ECHO"))
+		*exit_status = *exit_status;
 	else
 		waitpid(id, exit_status, 0);
 	while(wait(NULL) != -1)
@@ -33,20 +36,32 @@ int	close_fd_pipes(t_cmd *next, int *fdr, int *fdw)
 	}
 	fdr[0] = fdw[0];
 	fdr[1] = fdw[1];
+	close(fdr[1]);
 	return(0);
 }
 
-int	execute_command(t_cmd *cmd, int *exit_status)
+int	check_if_shell_builtin(char *exec)
+{
+	if (ft_str_compare(exec, "export") ||
+    ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
+     || ft_str_compare(exec, "CD") ||
+      ft_str_compare(exec, "ECHO"))
+	  return (1);
+	return (0);
+}
+
+void	execute_command(t_cmd *cmd, int *exit_status, char **env)
 {
 	int			id;
-	int			fnc_exit;
 	int			fdr[2];
 	int			fdw[2];
 
 	pipe(fdw);
 	while(1)
 	{
-		if(!check_if_exctble_is_here(cmd, fdr, fdw, fnc_exit))
+		if (check_if_shell_builtin(cmd->args[0]))
+			*exit_status = shell_builtin(cmd, fdr, fdw, env);
+		else
 		{
 			id = fork();	
 			if (id == 0)
@@ -54,10 +69,9 @@ int	execute_command(t_cmd *cmd, int *exit_status)
 		}
 		if (close_fd_pipes(cmd->next, fdr, fdw))
 		{
-			wait_for_children(id, exit_status, fnc_exit, cmd->args[0]);
+			wait_for_children(id, exit_status, cmd->args[0]);
 			break ;
 		}
-		close(fdr[1]);
 		pipe(fdw);
 		cmd = cmd->next;
 	}

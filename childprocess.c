@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/11 14:03:52 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:04:37 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	open_files(t_red *red, int *input, int *output)
 {
 	int fd;
-	
+
+	errno = 0;
 	if (red->type == 1)
 		fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC , 0644);
 	if (red->type == 2)

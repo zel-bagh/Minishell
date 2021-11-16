@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:00:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/13 16:00:06 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:06:01 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    check_file_error(char *file)
      (file[1] >= 97 && file[1] <= 122) || file[1] == '-' ||
       (file[1] >= '0' && file[1] <= '9')))
     {
-        printf("minishell: %s: ambiguous redirect");
+        printf("minishell: %s: ambiguous redirect", file);
         exit (1);
     }
 }
@@ -76,7 +76,7 @@ int check_file_error_l(char *file, t_hdoc hdoc, int *input, int *output)
      (file[1] >= 97 && file[1] <= 122) || file[1] == '-' ||
       (file[1] >= '0' && file[1] <= '9')))
     {
-        printf("minishell: %s: ambiguous redirect");
+        printf("minishell: %s: ambiguous redirect", file);
         if (hdoc.index >= 0)
             close(hdoc.heredoc_pipe_input_fd);
         if (*input)
