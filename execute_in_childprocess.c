@@ -1,57 +1,134 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_executable_exists.c                       :+:      :+:    :+:   */
+/*   execute_in_childprocess.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 13:48:32 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 16:58:36 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/21 11:32:12 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-// void    execute_2()
-// {
-//     if (errno == 13)
-//     {
-//         printf("minishell: %s: Permission denied");
-//         exit(126);
-//     }
-//     if (errno == 2)
-//     {
-//         printf("minishell: %s: No such file or directory");
-//         exit(127);
-//     }
-//     exit(-4);
-// }
-
-void    execute(char *executable, char **arguments, char **env)
+int get_path_index(char **env)
 {
-    // int i;
-    // int fd;
+    int i;
+    int j;
+    int nbr_colons;
+
+    i = -1;
+    j = 4;
+    nbr_colons = 1;
+    while (env[++i])
+    {
+        if (ft_strlen(env[i]) >= 6 && env[i][0] == 'P' && env[i][1] == 'A' &&
+         env[i][2] == 'T' && env[i][3] == 'H' && env[i][4] == '=')
+        {
+            while (env[i][++j])
+            {
+                if (env[i][j] != ':')
+                    nbr_colons = 0;
+                else
+                    nbr_colons++;
+                if (nbr_colons == 2 || (nbr_colons == 1 && env[i][++j] =='\0'))
+                    return (-1);
+            }
+            return (i);
+        }
+    }
+    return (-1);
+}
+
+int ft_stat(char *dir, char *nxt_dir, char **args, char **env)
+{
+    struct stat stats;
+    int i;
     
-    // i = -1;
-    // errno = 0;
-    // while (executable[++i])
-    //     if (executable[i] == '/')
-    //         break;
-    // if (executable[i] == '/')
-    // {
-    //     fd = open(executable, O_WRONLY);
-    //     if (errno == 21)
-    //     {
-    //         printf("minishell: %s: is a directory");
-    //         exit(126);
-    //     }
-    //     close(fd);
-    //     errno = 0;
-    //     execve(executable, arguments, NULL);
-    //     execute_2();
-    // }
-    // else
-    //  while(1)
-    //     continue; //
-    execve(executable, arguments, NULL);
+    i = stat(dir, &stats);
+    if (i == -1)
+    {
+        if (!nxt_dir)
+        {
+            printf("minishell: %s: command not found\n", args[0]);
+            exit (127);
+        }
+        return (-1);
+    }
+    if (!S_ISDIR(stats.st_mode) && (stats.st_mode & S_IXUSR))
+        last_step(dir, args, env);
+    if (S_ISDIR(stats.st_mode))
+    {
+        printf("minishell: %s: command not found\n", args[0]);
+        exit(127);
+    }
+    else if (!(stats.st_mode & S_IXUSR))
+        printf("minishell: %s: Permission denied\n", dir);
+    exit(126);
+}
+
+void    search_in_path_dir(char **args, char **env)
+{
+    char         **dir;
+    int i;
+    char *tmp;
+
+    i = get_path_index(env);
+    if (i == -1)
+        return ;
+    dir = ft_split(env[i]+5, ':');
+    i = -1;
+    while (dir[++i])
+    {
+        tmp = dir[i];
+        dir[i] = ft_strjoin(dir[i], "/");
+        free(tmp);
+        tmp = dir[i];
+        dir[i] = ft_strjoin(dir[i], args[0]);
+        free(tmp);
+        ft_stat(dir[i], dir[i + 1], args, env);
+    }
+}
+
+void    check_stats(int i, struct stat stats, char *cmd)
+{
+    if (errno == 13)
+    {
+        printf("minishell: %s: Permission denied\n", cmd);
+        exit(126);
+    }
+    if (errno == 2)
+    {
+        printf("minishell: %s: No such file or directory\n", cmd);
+        exit(127);
+    }
+    if (i == 0 && S_ISDIR(stats.st_mode))
+    {
+        printf("minishell: %s: is a directory\n",cmd);
+        exit(126);
+    }
+    if (i == 0 && !(stats.st_mode & S_IXUSR))
+    {
+        printf("minishell: %s: Permission denied\n", cmd);
+        exit(1);
+    }
+        
+}
+
+void    execute(char **args, char **env)
+{
+    int i;
+    struct stat stats;
+    
+    i = -1;
+    while (args[0][++i])
+        if (args[0][i] == '/')
+            break;
+    if (args[0][i] != '/')
+        search_in_path_dir(args, env);
+    errno = 0;
+    i = stat(args[0], &stats);
+    check_stats(i, stats, args[0]);
+    last_step(args[0], args, env);
 }

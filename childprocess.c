@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 16:57:41 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/17 08:58:18 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw, char **env)
 	else
 		if (cmd->next != NULL)
 			dup2(fdw[1], STDOUT_FILENO);
-	execute(*cmd->args, cmd->args, env);
+	execute(cmd->args, env);
 }

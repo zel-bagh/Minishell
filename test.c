@@ -14,18 +14,14 @@ int main(int argc, char **argv)
     char **p = malloc(2 * sizeof(char *));
     int a[100];
     int i;
+    struct stat stats;
 
-    p[0] = "./yo.c";
-    p[1] = NULL;
+    p[0]="/Users/zel-bagh//Desktop/Minishell/a.out";
+    p[1]=NULL;
 
-    pipe(a);
-    dup2(1,a[1]);
-    dup2(0,a[0]);
-
-
-    while(1);// i = execve("./a.out", p, NULL);
-    // printf("i == %d\n", errno);
-    //i = execve("./khikho", p, NULL);
-    open("directory", O_RDONLY | O_APPEND);
-    printf("i == %d\n",errno);
+    i = stat("/Users/zel-bagh//Desktop/Minishell/writo", &stats);
+    if (stats.st_mode & S_IXUSR)
+      printf("hi\n");
+    //i = execve(p[0],p, NULL);
+    //printf(" i= %d and errno = %d\n", i, errno);
 }
