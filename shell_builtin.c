@@ -6,26 +6,13 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 16:29:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 16:56:19 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/21 16:58:44 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Minishell.h"
 
-int export(char **args, int input, int output, char **env)
-{
-    char a[5];
-
-    args =0;
-    //a[4] = '\0';
-    env = 0;
-
-    read(input, a, 4);
-    write(output, a, 4);
-    return (0);
-}
-
-int call_func(char **args, int input, int output, char **env)
+int call_func(char **args, int input, int output, char ***env)
 {
     if (ft_str_compare(args[0], "export"))
         return (export(args + 1, input, output, env));
@@ -79,7 +66,7 @@ void    setting_input_output(int *in_out, t_cmd cmd, int *fdr, int *fdw)
     }
 }
 
-int shell_builtin(t_cmd *cmd, int *fdr, int *fdw, char **env)
+int shell_builtin(t_cmd *cmd, int *fdr, int *fdw, char ***env)
 {
     int in_out[2];
     int in_out_backup[2];

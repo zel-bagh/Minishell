@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 12:30:44 by zel-bagh          #+#    #+#             */
-/*   Updated: 2019/10/29 14:23:00 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/21 11:57:19 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static int		numberofpointers(char const *s, char c)
+static int	numberofpointers(char const *s, char c)
 {
 	int		comp;
 	int		i;
@@ -33,9 +33,9 @@ static int		numberofpointers(char const *s, char c)
 	return (comp);
 }
 
-static int		wordsnumber(char const *s, char c)
+static int	wordsnumber(char const *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (*s == c)
@@ -48,7 +48,7 @@ static int		wordsnumber(char const *s, char c)
 	return (i);
 }
 
-static char		**freememorie(char **p, int j)
+static char	**freememorie(char **p, int j)
 {
 	while (j--)
 		free(p[j]);
@@ -56,7 +56,7 @@ static char		**freememorie(char **p, int j)
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**memalloue;
 	int		z;
@@ -68,12 +68,11 @@ char			**ft_split(char const *s, char c)
 		return (NULL);
 	z = numberofpointers(s, c);
 	memalloue = malloc((z + 1) * sizeof(char *));
-	if (memalloue == NULL)
-		return (NULL);
 	while (j < z)
 	{
 		i = 0;
-		if (!(memalloue[j] = malloc((wordsnumber(s, c) + 1) * sizeof(char))))
+		memalloue[j] = malloc((wordsnumber(s, c) + 1) * sizeof(char));
+		if (!memalloue[j])
 			return (freememorie(memalloue, j));
 		while (*s == c)
 			s++;

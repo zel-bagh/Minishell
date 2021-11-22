@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/21 10:57:01 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/21 16:51:07 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	wait_for_children(int id, int *exit_status, char *exec)
 {
 	if (ft_str_compare(exec, "export") ||
-    ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
-     || ft_str_compare(exec, "CD") ||
-      ft_str_compare(exec, "ECHO"))
+		ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
+		|| ft_str_compare(exec, "CD") ||
+		ft_str_compare(exec, "ECHO"))
 		*exit_status = *exit_status;
 	else
 		waitpid(id, exit_status, 0);
@@ -51,7 +51,7 @@ int	check_if_shell_builtin(char *exec)
 	return (0);
 }
 
-void	execute_command(t_cmd *cmd, int *exit_status, char **env)
+void	execute_command(t_cmd *cmd, int *exit_status, char ***env)
 {
 	int			id;
 	int			fdr[2];
@@ -66,7 +66,7 @@ void	execute_command(t_cmd *cmd, int *exit_status, char **env)
 		{
 			id = fork();	
 			if (id == 0)
-				child_work(cmd, fdr, fdw, env);
+				child_work(cmd, fdr, fdw, *env);
 		}
 		if (close_fd_pipes(cmd->next, fdr, fdw))
 		{
