@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/21 16:51:07 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/23 09:54:06 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	wait_for_children(int id, int *exit_status, char *exec)
 		waitpid(id, exit_status, 0);
 	while(wait(NULL) != -1)
 		continue;
-
 }
 
 int	close_fd_pipes(t_cmd *next, int *fdr, int *fdw)

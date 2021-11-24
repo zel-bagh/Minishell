@@ -6,16 +6,20 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 16:29:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/21 16:58:44 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:02:33 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Minishell.h"
 
-int call_func(char **args, int input, int output, char ***env)
+int call_func(t_cmd *cmd, int input, int output, char ***env)
 {
-    if (ft_str_compare(args[0], "export"))
-        return (export(args + 1, input, output, env));
+    if (ft_str_compare(cmd->args[0], "export"))
+    {
+        if (cmd->args[1] && ((cmd->prev != NULL) || (cmd->next != NULL)))
+            return(0);
+        return (export(cmd->args + 1, input, output, env));
+    }
    // if (ft_str_compare(args[0], "cd") || ft_str_compare(args[0], "CD"))
         //return (cd(args + 1, input, output));
    // if (ft_str_compare(args[0], "echo") || ft_str_compare(args[0], "ECHO"))
@@ -80,7 +84,7 @@ int shell_builtin(t_cmd *cmd, int *fdr, int *fdw, char ***env)
     in_out_backup[0] = in_out[0];
     in_out_backup[1] = in_out[1];
     setting_input_output(in_out, *cmd, fdr, fdw);
-    func_ret = call_func(cmd->args, in_out[0], in_out[1], env);
+    func_ret = call_func(cmd, in_out[0], in_out[1], env);
     if (in_out_backup[0])
         close(in_out_backup[0]);
     if (in_out_backup[1])

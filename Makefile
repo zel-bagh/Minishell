@@ -6,7 +6,7 @@
 #    By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/02 17:45:42 by zel-bagh          #+#    #+#              #
-#    Updated: 2021/11/21 11:33:42 by zel-bagh         ###   ########.fr        #
+#    Updated: 2021/11/23 10:08:26 by zel-bagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = Minishell.c \
 	managing_files_errors.c \
 	execute_in_childprocess.c \
 	ft_split.c \
-	execute_in_childprocess2.c 
+	execute_in_childprocess2.c \
+	export.c
 
 all : $(NAME)
 

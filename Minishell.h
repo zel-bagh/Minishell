@@ -57,6 +57,20 @@ void	get_input_output(t_red* red, int *input, int *output);
 void	setting_final_input(t_hdoc hdoc, int index, int *input);
 void    last_step(char *dir, char **args, char **env);
 int		export(char **args, int input, int output, char ***env);
+char*   copy_string(char *string);
+int    copy_old_env(char **new_env, char **env);
+void    change_env_to_heap(char ***env);
+int number(char **args);
+int nbr_remained_args(t_argument *header);
+void    add_to_list(char *arg, t_argument **header);
+void	are_args_ingood_form(char **args, t_argument **header, int *k);
+int    compaire_arg_env(char *argument, char *env);
+t_argument*   delete_node(t_argument *node, t_argument **header);
+void    change_env(char *arg, char **env);
+void    change_already_existed_env(t_argument **header, char **env);
+void    add_new_env(char **new_env, t_argument **header, int i);
+int  	export(char **args, int input, int output, char ***env);
+int ft_compaire(char *a, char *b);
 #endif
 
 //type : > = 1 : >> = 2 : < = 3 : << : 4 
