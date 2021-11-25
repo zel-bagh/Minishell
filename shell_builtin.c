@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 16:29:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/24 15:02:33 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:25:26 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int call_func(t_cmd *cmd, int input, int output, char ***env)
         if (cmd->args[1] && ((cmd->prev != NULL) || (cmd->next != NULL)))
             return(0);
         return (export(cmd->args + 1, input, output, env));
+    }
+    if (ft_str_compare(cmd->args[0], "unset"))
+    {
+        if ((cmd->prev != NULL) || (cmd->next != NULL))
+            return(0);
+        return (unset(cmd->args + 1, env));
     }
    // if (ft_str_compare(args[0], "cd") || ft_str_compare(args[0], "CD"))
         //return (cd(args + 1, input, output));

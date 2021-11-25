@@ -33,6 +33,7 @@ typedef struct s_heredoc
 typedef struct s_argument
 {
 	char *argument;
+	int index;
 	struct s_argument *next;
 }					t_argument;
 
@@ -63,7 +64,7 @@ void    change_env_to_heap(char ***env);
 int number(char **args);
 int nbr_remained_args(t_argument *header);
 void    add_to_list(char *arg, t_argument **header);
-void	are_args_ingood_form(char **args, t_argument **header, int *k);
+void	are_args_ingood_form(char **args, t_argument **header, int *k, char c);
 int    compaire_arg_env(char *argument, char *env);
 t_argument*   delete_node(t_argument *node, t_argument **header);
 void    change_env(char *arg, char **env);
@@ -71,6 +72,8 @@ void    change_already_existed_env(t_argument **header, char **env);
 void    add_new_env(char **new_env, t_argument **header, int i);
 int  	export(char **args, int input, int output, char ***env);
 int ft_compaire(char *a, char *b);
+int	unset(char **args, char ***env);
+int    check_argFor_unset(char *args, int *k);
 #endif
 
 //type : > = 1 : >> = 2 : < = 3 : << : 4 

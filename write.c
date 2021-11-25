@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:58:24 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/24 16:49:19 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:42:27 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,30 @@
 #include<stdlib.h>
 #include<unistd.h>
 
-int    compaire_arg_env(char *argument, char *env)
+int    check_argFor_unset(char *args, int *k)
 {
     int j;
-    int k;
 
     j = -1;
-    k = -1;
-    while (env[++j] != '=' && env[j] && argument[++k] != '=' && argument[k])
-        if (env[j] != argument[k])
-            break ;
-    if ((!env[j] || env[j] == '=') && (!argument[j] || argument[j] == '='))
+    while (args[j++])
     {
-        if (argument[j] == '=')
-            return (2);
-        return (1);
+        if ((j == 0 && args[j] >= 48 && args[j] <= 57) || ((
+         args[j] < 48 || args[j] > 57) && (args[j] < 65
+        || args[j] > 90) && (args[j] < 97 || args[j] > 122)
+         && args[j] != '_'))
+        {
+            printf("Minishell: unset: `%s': not a valid identifier\n", args);
+            *k = 1;
+            return (0);
+        }
     }
-    return (0);
+    return (1);
 }
-
-int	func(void)
-{
-	return (3);
-}
-
-int	fun(int i)
-{
-	return (i);
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	int		id;
 	char	*c;
     char    *b;
 
-	//id = fun(func());
-	//c = id + 48;
-	//write(1, &c, 1);
-    c = malloc(1 * sizeof(char *));
-    b = malloc(1 * sizeof(char *));
-    free (c);
-    *b = 'a';
-	printf("%c\n", *b);
+    printf("%d\n", check_argFor_unset("=", &id));
 }

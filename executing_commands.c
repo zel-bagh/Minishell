@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/23 09:54:06 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:12:27 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	wait_for_children(int id, int *exit_status, char *exec)
 	if (ft_str_compare(exec, "export") ||
 		ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
 		|| ft_str_compare(exec, "CD") ||
-		ft_str_compare(exec, "ECHO"))
+		ft_str_compare(exec, "ECHO") || ft_str_compare(exec, "unset"))
 		*exit_status = *exit_status;
 	else
 		waitpid(id, exit_status, 0);
@@ -45,7 +45,7 @@ int	check_if_shell_builtin(char *exec)
 	if (ft_str_compare(exec, "export") ||
     ft_str_compare(exec, "cd") || ft_str_compare(exec, "echo")
      || ft_str_compare(exec, "CD") ||
-      ft_str_compare(exec, "ECHO"))
+      ft_str_compare(exec, "ECHO") || ft_str_compare(exec, "unset"))
 	  return (1);
 	return (0);
 }

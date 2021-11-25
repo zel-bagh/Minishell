@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:13:14 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/24 16:59:03 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:02:42 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,32 +123,52 @@ void    add_to_list(char *arg, t_argument **header)
     }
 }
 
-void are_args_ingood_form(char **args, t_argument **header, int *k)
+int    check_argFor_export(char *args, int *k)
+{
+    int j;
+
+    j = -1;
+    while (args[++j] != '=' && args[j])
+    {
+        if ((j == 0 && args[j] >= 48 && args[j] <= 57) || ((
+         args[j] < 48 || args[j] > 57) && (args[j] < 65
+        || args[j] > 90) && (args[j] < 97 || args[j] > 122)
+         && args[j] != '_'))
+        {
+            printf("Minishell: export: `%s': not a valid identifier\n", args);
+            *k = 1;
+            return (0);
+        }
+    }
+    if (args[0] == '=')
+    {
+        printf("Minishell: export: `%s': not a valid identifier\n",
+        args);
+        *k = 1;
+        return (0) ;       
+    }
+    return (1);
+}
+
+void are_args_ingood_form(char **args, t_argument **header, int *k, char c)
 {
     int i;
-    int j;
     
     i = -1;
     *k = 0;
     *header = NULL;
     while (args[++i])
     {
-        j = -1;
-        while (args[i][++j] != '=' && args[i][j])
+        if (c == 'e')
         {
-            if ((j == 0 && args[i][j] >= 48 && args[i][j] <= 57) || ((
-                args[i][j] < 48 || args[i][j] > 57) && (args[i][j] < 65
-             || args[i][j] > 90) && (args[i][j] < 97 || args[i][j] > 122)
-              && args[i][j] != '_'))
-            {
-                printf("Minishell: export: `%s': not a valid identifier\n",
-                args[i]);
-                *k = 1;
-                break ;
-            }
+            if (check_argFor_export(args[i], k))
+                add_to_list(args[i], header);
         }
-        if (args[i][j] == '=' || args[i][j] == '\0')
-            add_to_list(args[i], header);
+        else if (c == 'u')
+        {
+            if (check_argFor_unset(args[i], k))
+                add_to_list(args[i], header);
+        }
     }
 }
 
@@ -357,6 +377,33 @@ int    show_env(char **env, int input, int output)
     return (1);
 }
 
+void    clean_header(t_argument **header, t_argument *p, t_argument *l)
+{
+    int i;
+
+    while(l->next)
+    {
+        p = l->next;
+        while (1)
+        {
+            i = compaire_arg_env(p->argument, l->argument);
+            if (i)
+            {
+                if (i == 2)
+                    l->argument = p->argument;
+                p = delete_node(p, header);
+            }
+            else
+                p = p->next;
+            if (!p)
+                   break;
+        }
+        l = l->next;
+        if (!l)
+         break ;
+    }
+}
+
 int  export(char **args, int input, int output, char ***env)
 {
     int i;
@@ -365,7 +412,7 @@ int  export(char **args, int input, int output, char ***env)
 
     if (!args[0] && show_env(*env, input, output))
         return(0);
-    are_args_ingood_form(args, &header, &i);
+    are_args_ingood_form(args, &header, &i, 'e');
     if (!header)
         return(1);
     if (env[0][0])
@@ -374,6 +421,8 @@ int  export(char **args, int input, int output, char ***env)
         return (1);
     if (!header && !i)
         return (0);
+    if (header->next)
+        clean_header(&header, NULL, header);
     new_env = malloc((number(*env) +
         nbr_remained_args(header) + 1) * sizeof(char *));
     add_new_env(new_env, &header, copy_old_env(new_env, *env));
@@ -382,6 +431,3 @@ int  export(char **args, int input, int output, char ***env)
         return (1);
     return (0);
 }
-
-//export should not work wiht pipes
-//export: `=h': not a valid identifier

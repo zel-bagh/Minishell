@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:12:19 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/24 17:42:36 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:25:12 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ int		main(int argc, char **argv, char **env)
 	argv = 0;
 
 
-
 	change_env_to_heap(&env);
-
 	cmd = malloc(3*sizeof(t_cmd));
-	cmd->args = malloc(4*sizeof(char*));
-	cmd->args[0]= "export";
-	cmd->args[1]= NULL;
+	cmd->args = malloc(11*sizeof(char*));
+	cmd->args[0]= "unset";
+	cmd->args[1]= "PWD";
 	cmd->args[2]= NULL;
-	cmd->args[3]= NULL;
+	cmd->args[3]= "PW.D";
+	cmd->args[4]= "US.ER";
+	cmd->args[5]= "c";
+	cmd->args[6]= "PATs.H";
+	cmd->args[7]= "b=a";
+	cmd->args[8]= "b";
+	cmd->args[9]= "b=";
+	cmd->args[10]= NULL;
 	cmd->next = NULL;//cmd + 1;
 	cmd->prev = NULL;
 	cmd->red = NULL;//malloc(4 * sizeof(t_red));
