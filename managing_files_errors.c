@@ -6,31 +6,12 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:00:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 16:18:40 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/28 15:23:06 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-// {
-// 		else
-// 	{
-// 		if (errno == 2)
-// 		{
-// 			printf("minishell: %s: No such file or directory\n", executable);
-// 			exit(127);
-// 		}
-// 		else if (errno == 21)
-// 		{
-// 			if (*executable == '.' && *executable == '\0')
-// 				printf("minishell: .: filename argument required\n.: usage: . filename [arguments]");
-// 			else
-// 				printf("minishell: %s: is a directory\n", executable);
-// 			exit(126);
-// 		}
-// 		exit(-2);
-// 	}
-// }
 void	print_open_failing_reason(char *file)
 {
 	if (errno == 2)
@@ -53,7 +34,8 @@ void    check_file_error(char *file)
     }
 }
 
-int	print_open_failing_reason_l(char *file, t_hdoc hdoc, int *input, int *output)
+int	print_open_failing_reason_l
+(char *file, t_hdoc hdoc, int *input, int *output)
 {
 	if (errno == 2)
 		printf("minishell: %s: No such file or directory\n", file);

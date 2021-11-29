@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.h                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 16:58:17 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/10/23 10:31:33 by zel-bagh         ###   ########.fr       */
+/*   Created: 2021/11/28 16:08:13 by zel-bagh          #+#    #+#             */
+/*   Updated: 2021/11/28 16:25:46 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILE_H
-# define FILE_H
 #include<unistd.h>
-#include<stdlib.h>
-#include<stdio.h>
 
+int ft_strlen(char *a)
+{
+    int n;
 
-#endif
+    n = 0;
+    while (a[n])
+        n++;
+    return (n);
+}
+
+int   main(void)
+{
+    char pwd[256];
+
+    write(1, getcwd(pwd, sizeof(pwd)), ft_strlen(pwd));
+    write(1, "\n", 1);
+    return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:12:19 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/25 17:25:12 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/29 09:39:19 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int		main(int argc, char **argv, char **env)
 	argv = 0;
 
 
-	change_env_to_heap(&env);
+	change_env_to_heap(&env, 0, 0, -1);
 	cmd = malloc(3*sizeof(t_cmd));
 	cmd->args = malloc(11*sizeof(char*));
-	cmd->args[0]= "unset";
-	cmd->args[1]= "PWD";
+	cmd->args[0]= "export";
+	cmd->args[1]= NULL;
 	cmd->args[2]= NULL;
 	cmd->args[3]= "PW.D";
 	cmd->args[4]= "US.ER";
@@ -34,7 +34,7 @@ int		main(int argc, char **argv, char **env)
 	cmd->args[8]= "b";
 	cmd->args[9]= "b=";
 	cmd->args[10]= NULL;
-	cmd->next = NULL;//cmd + 1;
+	cmd->next = cmd + 1;
 	cmd->prev = NULL;
 	cmd->red = NULL;//malloc(4 * sizeof(t_red));
 // {{
@@ -64,13 +64,14 @@ int		main(int argc, char **argv, char **env)
 
 
 
-// 	(cmd+1)->args = malloc(4*sizeof(char*));
-// 	(cmd+1)->args[0]= "/usr/bin/wc";
-// 	(cmd+1)->args[1]= NULL;
-// 	(cmd+1)->args[2]= NULL;
-// 	(cmd+1)->args[3]= NULL;
-// 	(cmd+1)->prev = cmd ;
-// 	(cmd+1)->red = malloc(4 * sizeof(t_red));
+	(cmd+1)->args = malloc(4*sizeof(char*));
+	(cmd+1)->args[0]= "grep";
+	(cmd+1)->args[1]= NULL;
+	(cmd+1)->args[2]= NULL;
+	(cmd+1)->args[3]= NULL;
+	(cmd+1)->prev = cmd ;
+	(cmd+1)->next = NULL;
+	(cmd+1)->red = NULL;// malloc(4 * sizeof(t_red));
 	
 // 	{{
 // 		(cmd+1)->red->file = "yo.c";

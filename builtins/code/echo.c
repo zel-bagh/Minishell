@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbani <mbani@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 10:57:05 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/10/18 10:17:40 by mbani            ###   ########.fr       */
+/*   Updated: 2021/11/28 16:15:11 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include<unistd.h>
+#include<stdio.h>
 
 void	ft_write(int i, int n, char **argv)
 {

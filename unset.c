@@ -6,49 +6,11 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:52:42 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/25 17:23:55 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:12:25 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Minishell.h"
-
-int    check_argFor_unset(char *args, int *k)
-{
-    int j;
-
-    j = -1;
-    while (args[++j])
-    {
-        if ((j == 0 && args[j] >= 48 && args[j] <= 57) || ((
-         args[j] < 48 || args[j] > 57) && (args[j] < 65
-        || args[j] > 90) && (args[j] < 97 || args[j] > 122)
-         && args[j] != '_'))
-        {
-            printf("Minishell: unset: `%s': not a valid identifier\n", args);
-            *k = 1;
-            return (0);
-        }
-    }
-    return (1);
-}
-
-int    ft_frree(t_argument **header)
-{
-    t_argument *p;
-    t_argument *k;
-
-    p = *header;
-    while (1)
-    {
-        k = p->next;
-        free(p);
-        if (!k)
-            break ;
-        p = k;
-    }
-    *header = NULL;
-    return (1);
-}
 
 void	keep_existed_env_inHeader(t_argument **header, char **env)
 {
@@ -124,6 +86,7 @@ void    keep_wanted_env(char **new_env, t_argument **header, char **env)
             free(env[i]);
     }
     free(env);
+    ft_frree(header);
 }
 
 int	unset(char **args, char ***env)

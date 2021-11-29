@@ -1,6 +1,0 @@
->$env??????????????
-||
-executable <.. >.. arg1 arg2 arg3
-
-
-what to do : <$? change red_file with exit_status; and tell if file is ambiguous redirect <$alkglakg

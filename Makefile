@@ -6,14 +6,13 @@
 #    By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/02 17:45:42 by zel-bagh          #+#    #+#              #
-#    Updated: 2021/11/25 12:03:34 by zel-bagh         ###   ########.fr        #
+#    Updated: 2021/11/29 11:22:01 by zel-bagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = mini
 
 SRC = Minishell.c \
-	functions.c \
 	executing_commands.c \
 	childprocess.c \
 	heredoc.c \
@@ -23,7 +22,15 @@ SRC = Minishell.c \
 	ft_split.c \
 	execute_in_childprocess2.c \
 	export.c \
-	unset.c
+	unset.c \
+	exit.c \
+	cd.c \
+	functions1.c \
+	functions2.c \
+	functions3.c \
+	functions5.c \
+	functions6.c \
+	functions4.c
 
 all : $(NAME)
 

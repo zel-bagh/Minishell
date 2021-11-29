@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/17 08:58:18 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/28 20:16:06 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw, char **env)
 {
 	int	input;
 	int output;
-	
+
 	input = 0;
 	output = 0;
 	if (cmd->red)

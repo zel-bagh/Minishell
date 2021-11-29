@@ -37,6 +37,12 @@ typedef struct s_argument
 	struct s_argument *next;
 }					t_argument;
 
+typedef struct s_xe
+{
+	char ***env;
+	int last_ex;
+}					t_xe;
+
 
 int		ft_strlen(const char *a);
 char	**ft_split(char const *s, char c);
@@ -53,14 +59,14 @@ void    execute(char **arguments, char **env);
 void    check_file_error(char *file);
 int		check_file_error_l(char *file, t_hdoc hdoc, int *input, int *output);
 int		get_input_output_from_red_l(t_red *red, int *input, int *output);
-int		shell_builtin(t_cmd *cmd, int *fdr, int *fdw, char ***env);
+int		shell_builtin(t_cmd *cmd, int *fdr, int *fdw, t_xe xe);
 void	get_input_output(t_red* red, int *input, int *output);
 void	setting_final_input(t_hdoc hdoc, int index, int *input);
 void    last_step(char *dir, char **args, char **env);
 int		export(char **args, int input, int output, char ***env);
 char*   copy_string(char *string);
 int    copy_old_env(char **new_env, char **env);
-void    change_env_to_heap(char ***env);
+void    change_env_to_heap(char ***env, int pwd, int oldpwd, int i);
 int number(char **args);
 int nbr_remained_args(t_argument *header);
 void    add_to_list(char *arg, t_argument **header);
@@ -73,7 +79,15 @@ void    add_new_env(char **new_env, t_argument **header, int i);
 int  	export(char **args, int input, int output, char ***env);
 int ft_compaire(char *a, char *b);
 int	unset(char **args, char ***env);
-int    check_argFor_unset(char *args, int *k);
+int    check_argfor_unset(char *args, int *k);
+int    compaire_arg_env(char *argument, char *env);
+void    copy_env(char **new_env, char **env);
+int    ft_frree(t_argument **header);
+void    keep_wanted_env(char **new_env, t_argument **header, char **env);
+void	add_cmd(char *cmd, char ***env);
+int		cd(char **args, char ***env);
+void	initialize(t_xe *xe, char ***env, int last_xe);
+int	exxit(t_cmd cmd, int last_exit);
+int	is_num(char *a);
+int	ft_atoi(char *a);
 #endif
-
-//type : > = 1 : >> = 2 : < = 3 : << : 4 

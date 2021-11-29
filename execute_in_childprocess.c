@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 13:48:32 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/21 11:32:12 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/25 19:02:34 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,11 @@ void    check_stats(int i, struct stat stats, char *cmd)
         printf("minishell: %s: Permission denied\n", cmd);
         exit(126);
     }
+    if (errno == 20)
+    {
+        printf("minishell: %s: Not a directory\n", cmd);
+        exit(126);
+    }
     if (errno == 2)
     {
         printf("minishell: %s: No such file or directory\n", cmd);
@@ -111,9 +116,8 @@ void    check_stats(int i, struct stat stats, char *cmd)
     if (i == 0 && !(stats.st_mode & S_IXUSR))
     {
         printf("minishell: %s: Permission denied\n", cmd);
-        exit(1);
-    }
-        
+        exit(126);
+    }   
 }
 
 void    execute(char **args, char **env)
