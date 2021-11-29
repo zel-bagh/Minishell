@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:58:24 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 11:40:00 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/29 21:59:32 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,15 @@
 #include<unistd.h>
 #include<string.h>
 #include"Minishell.h"
+#include <limits.h>
 
 
 
-
-int main(int argc, char **argv, char **env)
+int main()
 {
-	// int		id;
-    // int     exit_status;
+	//int		id;
+    int    s;
 
-    // id = fork();
-    // if (id == 0)
-    // {
-    //     printf("hi\n");
-    //     exit(1);
-    // }
-    // waitpid(id, &exit_status, 0);
-    // printf("exit_status is = %d\n", exit_status);
-    int a = -4;
-    if ((unsigned char)a == 252)
-    return 1; 
-    unsigned char b = a;
-    unsigned char c = 252;
-    if (b == c)
-        printf("hi\n");
+    s = INT_MAX + 1;
+    printf("%d\n", s);
 }

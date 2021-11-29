@@ -6,7 +6,7 @@
 #    By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/02 17:45:42 by zel-bagh          #+#    #+#              #
-#    Updated: 2021/11/29 11:22:01 by zel-bagh         ###   ########.fr        #
+#    Updated: 2021/11/29 22:53:16 by zel-bagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = Minishell.c \
 	functions3.c \
 	functions5.c \
 	functions6.c \
-	functions4.c
+	functions4.c \
+	functions7.c
 
 all : $(NAME)
 

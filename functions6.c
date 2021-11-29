@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:43:31 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/28 18:28:23 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/29 21:00:24 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void    change_env_to_heap(char ***env, int pwd, int oldpwd, int i)
         *env = add_oldpwd(*env);
     if (!pwd)
         *env = add_pwd(*env);
+    add_shlvl(env);
 }
 
 int number(char **args)

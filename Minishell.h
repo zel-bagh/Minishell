@@ -90,4 +90,6 @@ void	initialize(t_xe *xe, char ***env, int last_xe);
 int	exxit(t_cmd cmd, int last_exit);
 int	is_num(char *a);
 int	ft_atoi(char *a);
+int	is_there_value(char *env);
+void    add_shlvl(char ***env);
 #endif

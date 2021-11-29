@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 10:07:05 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:43:31 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,31 @@
 
 void	wait_for_children(int id, int *exit_status, char *exec)
 {
+	int i;
+	unsigned char a;
+	
 	if (ft_str_compare(exec, "export") ||
 		ft_str_compare(exec, "cd")
 		|| ft_str_compare(exec, "CD")
 		 || ft_str_compare(exec, "unset"))
-		*exit_status = *exit_status;
+		{
+			a = *exit_status;
+			*exit_status = a;
+		}
 	else
-		waitpid(id, exit_status, 0);
+	{
+		waitpid(id, &i, 0);
+		*exit_status = WEXITSTATUS(i);
+	}
 	while(wait(NULL) != -1)
 		continue;
 }
 
-int	close_fd_pipes(t_cmd *next, int *fdr, int *fdw)
+int	close_fd_pipes(t_cmd cmd, int *fdr, int *fdw)
 {
-	close(fdr[0]);
-	if(next == NULL)
+	if(cmd.prev != NULL)
+		close(fdr[0]);
+	if(cmd.next == NULL)
 	{
 		close(fdw[1]);
 		close(fdw[0]);
@@ -70,7 +80,7 @@ void	execute_command(t_cmd *cmd, int *exit_status, char ***env)
 			if (id == 0)
 				child_work(cmd, fdr, fdw, *env);
 		}
-		if (close_fd_pipes(cmd->next, fdr, fdw))
+		if (close_fd_pipes(*cmd, fdr, fdw))
 		{
 			wait_for_children(id, exit_status, cmd->args[0]);
 			break ;

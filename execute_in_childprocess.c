@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 13:48:32 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/25 19:02:34 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:16:33 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,13 @@ void    execute(char **args, char **env)
 {
     int i;
     struct stat stats;
-    
+
+    if (args[0][1] == '\0' && args[0][0] == '.')
+    {
+        printf("bash: .: filename argument required\n");
+        printf(".: usage: . filename [arguments]\n");
+        exit(2);
+    }
     i = -1;
     while (args[0][++i])
         if (args[0][i] == '/')
