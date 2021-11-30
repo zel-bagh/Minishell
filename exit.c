@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:20:18 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 11:20:51 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:57:28 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_args(char **args, int last_exit)
 {
-	int i;
+	int	i;
+
 	if (args[0] == NULL)
 		exit(last_exit);
 	i = is_num(args[0]);
@@ -33,15 +34,15 @@ int	check_args(char **args, int last_exit)
 
 int	check_args_2(char **args)
 {
-	int i;
-	
+	int	i;
+
 	if (args[0] == NULL)
 		return (0);
 	i = is_num(args[0]);
 	if (!i)
 	{
 		printf("minishell: exit: %s: numeric argument required\n", args[0]);
-		return(255);
+		return (255);
 	}
 	if (args[1] != NULL)
 	{
@@ -49,7 +50,6 @@ int	check_args_2(char **args)
 		return (1);
 	}
 	return (ft_atoi(args[0]));
-	
 }
 
 int	exxit(t_cmd cmd, int last_exit)

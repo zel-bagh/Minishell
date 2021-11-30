@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 18:43:31 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:56:12 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,65 @@
 
 void	wait_for_children(int id, int *exit_status, char *exec)
 {
-	int i;
-	unsigned char a;
-	
-	if (ft_str_compare(exec, "export") ||
-		ft_str_compare(exec, "cd")
-		|| ft_str_compare(exec, "CD")
-		 || ft_str_compare(exec, "unset"))
-		{
-			a = *exit_status;
-			*exit_status = a;
-		}
+	int				i;
+	unsigned char	a;
+
+	if (ft_str_compare(exec, "export") || ft_str_compare(exec, "cd")
+		|| ft_str_compare(exec, "CD") || ft_str_compare(exec, "unset"))
+	{
+		a = *exit_status;
+		*exit_status = a;
+	}
 	else
 	{
 		waitpid(id, &i, 0);
 		*exit_status = WEXITSTATUS(i);
 	}
-	while(wait(NULL) != -1)
-		continue;
+	while (wait(NULL) != -1)
+		continue ;
 }
 
 int	close_fd_pipes(t_cmd cmd, int *fdr, int *fdw)
 {
-	if(cmd.prev != NULL)
+	if (cmd.prev != NULL)
 		close(fdr[0]);
-	if(cmd.next == NULL)
+	if (cmd.next == NULL)
 	{
 		close(fdw[1]);
 		close(fdw[0]);
-		return(1);
+		return (1);
 	}
 	fdr[0] = fdw[0];
 	fdr[1] = fdw[1];
 	close(fdr[1]);
-	return(0);
+	return (0);
 }
 
 int	check_if_shell_builtin(char *exec)
 {
-	if (ft_str_compare(exec, "export") ||
-    ft_str_compare(exec, "cd") ||
-      ft_str_compare(exec, "CD") ||
-      ft_str_compare(exec, "unset")
-	  || ft_str_compare(exec, "exit"))
-	  return (1);
+	if (ft_str_compare(exec, "export") || ft_str_compare(exec, "cd")
+		|| ft_str_compare(exec, "CD") || ft_str_compare(exec, "unset")
+		|| ft_str_compare(exec, "exit"))
+		return (1);
 	return (0);
 }
 
 void	execute_command(t_cmd *cmd, int *exit_status, char ***env)
 {
-	int			id;
-	int			fdr[2];
-	int			fdw[2];
-	t_xe		xe;
-	
+	int		id;
+	int		fdr[2];
+	int		fdw[2];
+	t_xe	xe;
+
 	initialize(&xe, env, *exit_status);
 	pipe(fdw);
-	while(1)
+	while (1)
 	{
 		if (check_if_shell_builtin(cmd->args[0]))
 			*exit_status = shell_builtin(cmd, fdr, fdw, xe);
 		else
 		{
-			id = fork();	
+			id = fork();
 			if (id == 0)
 				child_work(cmd, fdr, fdw, *env);
 		}

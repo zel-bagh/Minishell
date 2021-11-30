@@ -6,13 +6,13 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:11:02 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/16 14:48:46 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:11:36 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	get_the_new_hdoc_pipe_toread_from(char *when_to_stop,int *fd)
+void	get_the_new_hdoc_pipe_toread_from(char *when_to_stop, int *fd)
 {
 	char	*readline_return;
 	int		pipe_fd[2];
@@ -44,14 +44,15 @@ void	heredoc(t_red *red, t_hdoc *hdoc)
 	i = -1;
 	hdoc->index = -1;
 	hdoc->heredoc_pipe_input_fd = 0;
-	while(++i >= 0)
+	while (++i >= 0)
 	{
 		if (red->type == 4)
 		{
 			hdoc->index = i;
 			if (hdoc->heredoc_pipe_input_fd)
 				close(hdoc->heredoc_pipe_input_fd);
-			get_the_new_hdoc_pipe_toread_from(red->file, &hdoc->heredoc_pipe_input_fd);
+			get_the_new_hdoc_pipe_toread_from(red->file,
+				&hdoc->heredoc_pipe_input_fd);
 		}
 		if (red->next == NULL)
 			break ;

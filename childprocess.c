@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/28 20:16:06 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:49:09 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	open_files(t_red *red, int *input, int *output)
 {
-	int fd;
+	int	fd;
 
 	errno = 0;
 	if (red->type == 1)
-		fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC , 0644);
+		fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (red->type == 2)
-		fd = open(red->file, O_CREAT | O_WRONLY | O_APPEND , 0644);
+		fd = open(red->file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (red->type == 3)
 		fd = open(red->file, O_RDONLY);
 	if (red->type == 1 || red->type == 2)
@@ -29,7 +29,7 @@ void	open_files(t_red *red, int *input, int *output)
 		*input = fd;
 }
 
-void	get_input_output(t_red* red, int *input, int *output)
+void	get_input_output(t_red *red, int *input, int *output)
 {
 	if (red->type == 1 || red->type == 2)
 	{
@@ -91,18 +91,18 @@ void	get_input_output_from_red(t_red *red, int *input, int *output)
 void	child_work(t_cmd *cmd, int *fdr, int *fdw, char **env)
 {
 	int	input;
-	int output;
+	int	output;
 
 	input = 0;
 	output = 0;
 	if (cmd->red)
 		get_input_output_from_red(cmd->red, &input, &output);
-	if(input)
+	if (input)
 		dup2(input, STDIN_FILENO);
 	else
 		if (cmd->prev != NULL)
 			dup2(fdr[0], STDIN_FILENO);
-	if(output)
+	if (output)
 		dup2(output, STDOUT_FILENO);
 	else
 		if (cmd->next != NULL)

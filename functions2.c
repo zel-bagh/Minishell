@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:40:10 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/28 18:57:18 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:02:34 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	check_argfor_unset(char *args, int *k)
 	{
 		if ((j == 0 && args[j] >= 48 && args[j] <= 57)
 			|| ((args[j] < 48 || args[j] > 57)
-			&& (args[j] < 65 || args[j] > 90)
-			&& (args[j] < 97 || args[j] > 122)
-			&& args[j] != '_'))
+				&& (args[j] < 65 || args[j] > 90)
+				&& (args[j] < 97 || args[j] > 122)
+				&& args[j] != '_'))
 		{
 			printf("Minishell: unset: `%s': not a valid identifier\n", args);
 			*k = 1;
@@ -65,7 +65,7 @@ char	*get_key(char *p)
 	i = 0;
 	while (p[i] != '=' && p[i])
 		i++;
-	a = malloc((i  + 1) * sizeof(char));
+	a = malloc((i + 1) * sizeof(char));
 	i = -1;
 	while (p[++i] != '=' && p[i])
 		a[i] = p[i];
@@ -87,7 +87,7 @@ int	ft_compaire(char *a, char *b)
 		if (ta[i] < tb[i])
 		{
 			ft_free(ta, tb);
-			return (0);               
+			return (0);
 		}
 		if (ta[i] > tb[i])
 		{

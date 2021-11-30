@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 10:57:05 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/28 16:15:11 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:34:44 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	ft_write(int i, int n, char **argv)
 
 int	checkfor_n(char *p)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (p[0] == '-' && p[1] == 'n')
 	{
 		while (p[++i] != '\0')
-			if(p[i] != 'n')
+			if (p[i] != 'n')
 				return (0);
 		return (1);
 	}
