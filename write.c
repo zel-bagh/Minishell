@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:58:24 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 21:59:32 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/01 22:55:44 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,25 @@
 #include"Minishell.h"
 #include <limits.h>
 
+// void	handlesig(int sig)
+// // {
+// // 	if (sig == SIGINT)
+// // 	{
+// //         write(1, "\n>", 1);
+// //         write(1, ">", 1);
+// // 		//rl_on_new_line();
+// // 		//rl_replace_line("", 0);
+// // 		rl_redisplay();
+// // 	}
+// // }
 
 
 int main()
 {
-	//int		id;
-    int    s;
+	//signal(SIGINT, handlesig);
+	int i = (int)45242448456646464;
 
-    s = INT_MAX + 1;
-    printf("%d\n", s);
+	unsigned char a = (char)i;
+	i = (int)a;
+	printf("%d\n", i);
 }

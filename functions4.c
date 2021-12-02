@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 18:22:23 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 15:04:32 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/01 22:57:19 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	initialize(t_xe *xe, char ***env, int last_xe)
 
 int	ft_atoi(char *a)
 {
-	int	i;
-	int	num;
-	int	sign;
+	int				i;
+	long long int	num;
+	int				sign;
 
 	i = -1;
 	sign = 1;
@@ -47,7 +47,7 @@ int	ft_atoi(char *a)
 	num = 0;
 	while (a[++i])
 		num = num * 10 + (a[i] - 48);
-	return (sign * num);
+	return ((int)(sign * num));
 }
 
 int	is_num(char *a)

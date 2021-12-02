@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 18:46:23 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/28 18:49:09 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:02:18 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_str_compare(const char *a, const char *b)
 	int	i;
 
 	if (a == NULL || b == NULL)
-		return (0);
+		return (2);
 	i = 0;
 	while (a[i] != '\0' || b[i] != '\0')
 	{

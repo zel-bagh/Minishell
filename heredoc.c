@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:11:02 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 15:11:36 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:10:06 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	get_the_new_hdoc_pipe_toread_from(char *when_to_stop, int *fd)
 		readline_return = readline(">");
 		if (ft_str_compare(readline_return, when_to_stop))
 		{
-			free(readline_return);
+			if (readline_return)
+				free(readline_return);
 			close(pipe_fd[1]);
 			break ;
 		}

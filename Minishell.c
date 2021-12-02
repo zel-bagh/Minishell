@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:12:19 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/29 23:23:34 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:48:00 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char **argv, char **env)
 
 	cmd = malloc(3*sizeof(t_cmd));
 	cmd->args = malloc(11*sizeof(char*));
-	cmd->args[0]= "export";
+	cmd->args[0]= "ls";
 	cmd->args[1]= NULL;
 	cmd->args[2]= NULL;
 	cmd->args[3]= "PW.D";
@@ -35,14 +35,14 @@ int		main(int argc, char **argv, char **env)
 	cmd->args[8]= "b";
 	cmd->args[9]= "b=";
 	cmd->args[10]= NULL;
-	cmd->next = cmd + 1;
+	cmd->next = NULL;//cmd + 1;
 	cmd->prev = NULL;
-	cmd->red = NULL;//malloc(4 * sizeof(t_red));
-// {{
+	cmd->red = malloc(4 * sizeof(t_red));
+{{
 		
-// 		(cmd)->red->file = "writeaafk;akf;k";
-// 		(cmd)->red->type = 3;
-// 		(cmd)->red->next =NULL;//(cmd)->red+1;
+		(cmd)->red->file = "stop";
+		(cmd)->red->type = 4;
+		(cmd)->red->next = NULL; //(cmd)->red+1;
 		
 // (cmd)->red = (cmd)->red + 1;
 // 		(cmd)->red->file = "yo.c";
@@ -61,7 +61,7 @@ int		main(int argc, char **argv, char **env)
 // 		(cmd)->red->next = NULL;
 		
 //  		(cmd)->red = (cmd)->red - 3;	
-// }}
+}}
 
 
 

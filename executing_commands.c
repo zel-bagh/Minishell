@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 14:56:12 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/01 23:17:24 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	wait_for_children(int id, int *exit_status, char *exec)
 	if (ft_str_compare(exec, "export") || ft_str_compare(exec, "cd")
 		|| ft_str_compare(exec, "CD") || ft_str_compare(exec, "unset"))
 	{
-		a = *exit_status;
-		*exit_status = a;
+		a = (char)(*exit_status);
+		*exit_status = (int)a;
 	}
 	else
 	{

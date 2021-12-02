@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:20:18 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 14:57:28 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/01 22:51:57 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	check_args(char **args, int last_exit)
 		printf("exit\nminishell: exit: too many arguments\n");
 		return (1);
 	}
+	printf("exit\n");
 	exit(ft_atoi(args[0]));
 }
 

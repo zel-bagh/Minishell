@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:14:09 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 14:49:09 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/01 23:58:25 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	child_work(t_cmd *cmd, int *fdr, int *fdw, char **env)
 
 	input = 0;
 	output = 0;
+	signal(SIGINT, SIG_DFL);
 	if (cmd->red)
 		get_input_output_from_red(cmd->red, &input, &output);
 	if (input)

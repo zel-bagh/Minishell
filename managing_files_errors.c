@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 14:00:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 15:13:50 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:46:55 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ void	print_open_failing_reason(char *file)
 
 void	check_file_error(char *file)
 {
-	if (file[0] == '$' && ((file[1] >= 65 && file[1] <= 90)
-			|| (file[1] >= 97 && file[1] <= 122) || file[1] == '-'
-			|| (file[1] >= '0' && file[1] <= '9')))
+	if (file[0] == (char)130)
 	{
-		printf("minishell: %s: ambiguous redirect", file);
+		printf("minishell: $%s: ambiguous redirect", file + 1);
 		exit (1);
 	}
 }
