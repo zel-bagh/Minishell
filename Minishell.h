@@ -89,6 +89,7 @@ void	add(char **s, char *a, char c);
 void	fullfil(char **tmp, char *a, int j, int k);
 char	*grab_value(char *a);
 int 	tab_len(char **s);
+void	free_args(char **arg);
 int		get_wordlen(char *s, int i, char del);
 char	*copy_string(char *string);
 int		compaiiiire(char *argument, char *env);

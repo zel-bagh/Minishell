@@ -39,6 +39,35 @@ void	show_command()
 	}
 }
 
+void	free_red(t_red *red)
+{
+	t_red *tmp;
+
+	while(red)
+	{
+		free(red->name);
+		tmp = red->next;
+		free(red);
+		red = tmp;
+	}
+}
+
+void	free_g_sh()
+{
+	t_cmd	*cmd;
+
+	cmd = g_sh;
+	while(cmd)
+	{
+		free_args(cmd->args);
+		free_red(cmd->red);
+		g_sh = cmd->next;
+		free(cmd);
+		cmd = g_sh;
+	}
+	g_sh = NULL;
+}
+
 void	boucle(char *line, char **env, int exit_status)
 {
 	change_env_to_heap(&env, 0, 0, -1);
@@ -60,12 +89,12 @@ void	boucle(char *line, char **env, int exit_status)
 		}
 		else if (parse(line) == 2)
 			continue ;
-		if (line == NULL || !*line)
-				continue ;
+		if (line)
+		{
 		g_sh = fill_sh(line, exit_status, env);
-		//show_command();
 		execute_command(g_sh, &exit_status, &env);
-		g_sh =NULL;
+		free_g_sh();
+		}
 	}
 }
 
@@ -79,8 +108,8 @@ int main(int ac, char **av, char **env)
 	if (ac != 1)
 		return (0);
 	ignctl();
-	signal(SIGINT, handlesig);
-	signal(SIGQUIT, SIG_IGN);
+	// signal(SIGINT, handlesig);
+	// signal(SIGQUIT, SIG_IGN);
 	boucle(line, env, exit_status);
 	free(line);
 	return (0);

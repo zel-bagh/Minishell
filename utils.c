@@ -53,17 +53,17 @@ char	*ft_strtrim(char *s)
 
 	i = 0;
 	len = ft_strlen(s);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	while (s[i] == ' ' || s[i] == '\t')
+	while (s[i] == ' ')
 		i++;
+	j = len - 1;
+	while(s[j] == ' ')
+		j--;
+	ret = (char *)malloc(sizeof(char) * (j - i + 2));
+	ret [j - i + 1] = '\0';
+	len = j - i + 2;
 	j = 0;
-	while (s[i] != '\0')
-	{
-		ret[j] = s[i];
-		i++;
-		j++;
-	}
-	ret[j] = '\0';
+	while (--len > 0)
+		ret[j++] = s[i++];
 	return ret;
 }
 
@@ -75,9 +75,9 @@ char	*ft_strdup(char *s)
 
 	i = 0;
 	len = ft_strlen(s);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ret || len == 0)
+	if (!s || len == 0)
 		return (NULL);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
 	while (s[i])
 	{
 		ret[i] = s[i];

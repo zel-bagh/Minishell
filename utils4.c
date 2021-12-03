@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 22:48:45 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/02 04:46:50 by oidrissi         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:15:38 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ char	*trim_whitespaces(char *s)
 {
 	int	i;
 	int	len;
+	char *a;
 
 	i = 0;
 	len = ft_strlen(s);
-	if (!s || !*s)
-		return (NULL);
 	while (s[i] == ' ' || s[i] == '\t')
 		i++;
 	if (i == len)
+	{
+		free(s);
 		return (ft_strdup(""));
+	}
 	while (s[len - 1] == ' ')
 		len--;
-	return (ft_substr(s, i, len - i));
+	a = ft_substr(s, i, len - i);
+	free(s);
+	return (a);
 }
 
 int	toomuch(char *str)

@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:56:59 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/02 22:39:10 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 18:43:01 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ char	**realloc_str(char **s, char *t)
 	int		i;
 
 	i = 0;
-	len = tab_len(s);
-	ret = (char **)malloc(sizeof(char *) * (len + 2));
 	if (s == NULL)
 	{
-		ret[0] = ft_strdup(t);
+		ret = (char **)malloc(sizeof(char *) * 2);
+		ret[0] = t;
 		ret[1] = NULL;
 		return (ret);
 	}
+	len = tab_len(s);
+	ret = (char **)malloc(sizeof(char *) * (len + 2));
 	while (s[i] != NULL)
 	{
 		ret[i] = s[i];
@@ -60,6 +61,7 @@ char	**realloc_str(char **s, char *t)
 	}
 	ret[i] = t;
 	ret[i + 1] = NULL;
+	free(s);
 	return (ret);
 }
 
@@ -119,5 +121,6 @@ char	**new_split(char *s, char d)
 			ret = realloc_str(ret, b);
 		i++;
 	}
+	free(s);
 	return (ret);
 }
