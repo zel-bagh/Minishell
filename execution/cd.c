@@ -6,26 +6,11 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 19:03:21 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 14:47:15 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 03:31:22 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Minishell.h"
-
-char	*copy_string(char *string)
-{
-	int		n;
-	char	*new_string;
-	int		i;
-
-	i = -1;
-	n = ft_strlen(string);
-	new_string = malloc((n + 1) * sizeof(char));
-	while (string[++i])
-		new_string[i] = string[i];
-	new_string[i] = '\0';
-	return (new_string);
-}
 
 int	check_chdir_error(char *path)
 {
@@ -87,7 +72,7 @@ int	cd(char **args, char ***env)
 	if (i != -1)
 	{
 		free((*env)[i]);
-		*env[i] = ft_strjoin("PWD=", getcwd(pwd, sizeof(pwd)));
+		(*env)[i] = ft_strjoin("PWD=", getcwd(pwd, sizeof(pwd)));
 	}
 	return (0);
 }

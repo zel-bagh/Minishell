@@ -1,110 +1,106 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 15:26:20 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 15:33:12 by zel-bagh         ###   ########.fr       */
+/*   Created: 2021/11/21 19:51:07 by oidrissi          #+#    #+#             */
+/*   Updated: 2021/11/26 23:03:17 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h>
-# include <fcntl.h>
-# include <errno.h>
+# include <stdlib.h>
 # include <readline/readline.h>
-# include <sys/stat.h>
+#include <termios.h>
+# include <readline/history.h>
+# include <string.h>
 
-typedef struct s_redirections
+typedef struct    s_red
 {
-	char					*file;
-	int						type;
-	struct s_redirections	*next;
-}				t_red;
+	char            *name;
+	int             type;
+	struct s_red    *next;
+}               t_red;
 
-typedef struct s_cmd
+typedef struct s_add_red
 {
-	char			**args;
-	t_red			*red;
-	struct s_cmd	*next;
-	struct s_cmd	*prev;
-}				t_cmd;
+	int		exit_status;
+	char	**env;
+	t_red	**red;
+	char	*red_file;
+	char	*s;
+}				t_add_red;
 
-typedef struct s_heredoc
+typedef struct	s_exit
 {
-	int	heredoc_pipe_input_fd;
-	int	index;
-}				t_hdoc;
+	int				status;
+	int				exit;
+}				t_exit;
 
-typedef struct s_argument
+typedef struct  s_cmd
 {
-	char				*argument;
-	int					index;
-	struct s_argument	*next;
-}				t_argument;
+	char    **args;
+	t_red     *red;
+	struct s_cmd *next;
+	struct s_cmd *prev;
+}               t_cmd;
 
-typedef struct s_xe
-{
-	char	***env;
-	int		last_ex;
-}				t_xe;
+t_cmd           *g_sh;
 
-int				ft_strlen(const char *a);
-char			**ft_split(char const *s, char c);
-char			*ft_strjoin(const char *a, const char *b);
-int				ft_str_compare(const char *a, const char *b);
-char			*get_input(void);
-void			execute_command(t_cmd *cmd, int *exit_status, char ***env);
-void			child_work(t_cmd *cmd, int *fdr, int *fdw, char **env);
-void			heredoc(t_red *red, t_hdoc *hdoc);
-void			print_open_failing_reason(char *file);
-int				print_open_failing_reason_l(char *file, t_hdoc hdoc,
-					int *input, int *output);
-void			change_args_with_exit_status(char **args, int exit_status);
-void			execute(char **arguments, char **env);
-void			check_file_error(char *file);
-int				check_file_error_l(char *file, t_hdoc hdoc,
-					int *input, int *output);
-int				get_input_output_from_red_l(t_red *red,
-					int *input, int *output, int i);
-int				shell_builtin(t_cmd *cmd, int *fdr, int *fdw, t_xe xe);
-void			get_input_output(t_red *red, int *input, int *output);
-void			setting_final_input(t_hdoc hdoc, int index, int *input);
-void			last_step(char *dir, char **args, char **env);
-int				export(char **args, int input, int output, char ***env);
-char			*copy_string(char *string);
-int				copy_old_env(char **new_env, char **env);
-void			change_env_to_heap(char ***env, int pwd, int oldpwd, int i);
-int				number(char **args);
-int				nbr_remained_args(t_argument *header);
-void			add_to_list(char *arg, t_argument **header);
-void			are_args_ingood_form(char **args, t_argument **header,
-					int *k, char c);
-int				compaire_arg_env(char *argument, char *env);
-t_argument		*delete_node(t_argument *node, t_argument **header);
-void			change_env(char *arg, char **env);
-void			change_already_existed_env(t_argument **header, char **env);
-void			add_new_env(char **new_env, t_argument **header, int i);
-int				export(char **args, int input, int output, char ***env);
-int				ft_compaire(char *a, char *b);
-int				unset(char **args, char ***env);
-int				check_argfor_unset(char *args, int *k);
-int				compaire_arg_env(char *argument, char *env);
-void			copy_env(char **new_env, char **env);
-int				ft_frree(t_argument **header);
-void			keep_wanted_env(char **new_env, t_argument **header,
-					char **env);
-void			add_cmd(char *cmd, char ***env);
-int				cd(char **args, char ***env);
-void			initialize(t_xe *xe, char ***env, int last_xe);
-int				exxit(t_cmd cmd, int last_exit);
-int				is_num(char *a);
-int				ft_atoi(char *a);
-int				is_there_value(char *env);
-void			add_shlvl(char ***env);
+int     main(int ac, char **av, char **env);
+int	    ft_strlen(char *s);
+int	    is_builtin(char *s);
+int     in_quotes(char *s, int pos);
+char	*ft_strtrim(char *s);
+char	*ft_strdup(char *s);
+t_cmd	*ft_lstnew(char **args, t_red *red);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_substr(char *s, int start, int len);
+char	*get_token(char *s, int *pos, char del);
+char	*parse_token(char *token );
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strncmp(char *s1, char *s2, int n);
+char	*ft_itoa(int n);
+void	file_name(char *a, int exit_status, char **s, char **env);
+char	*expand(char *s, char **env);
+int		ft_strchr(char *s, int c);
+char	*trim_whitespaces(char *s);
+int		parse(char *s);
+char	*ft_itoa(int n);
+void	handlesig(int sig);
+void	ignctl(void);
+t_cmd	*fill_sh(char *line, int exit_status, char **env);
+char	*get_arg(char *str, int *i, int k);
+char	**new_split(char *s,  char d);
+char	*searchin_env(char *tmp, char **env);
+int		eeexpand(char *a, int i, char **env, char **s);
+int		add_exit_status(int exit_status, char **s, int i);
+int		manage_squotes(char **s, char *a, int i);
+t_red	*redirections(char *str, int exit_status, char **env, int i);
+char	*get_string(int i);
+int		should_add(char a, char b);
+void	add(char **s, char *a, char c);
+void	fullfil(char **tmp, char *a, int j, int k);
+char	*grab_value(char *a);
+int 	tab_len(char **s);
+int		get_wordlen(char *s, int i, char del);
+char	*copy_string(char *string);
+int		compaiiiire(char *argument, char *env);
+t_red	*init_red();
+void	more_help2(int *dbl, int *j, int *i);
+int     more_help(int *sgl, int *j, int *i, char *s);
+int     hold_d(int *dbl, int *j, int *i, char *s);
+int		hold_s(int *dbl, int *j, int *i, char *s);
+void	hold2(int *i, int *c);
+void	init(int *dbl, int *sgl, int *c, int *j);
+void	execute_command(t_cmd *cmd, int *exit_status, char ***env);
+void	change_env_to_heap(char ***env, int pwd, int oldpwd, int i);
+
+
 #endif

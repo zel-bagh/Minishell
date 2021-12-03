@@ -6,14 +6,14 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 16:29:41 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/12/01 22:43:28 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 02:49:54 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Minishell.h"
 
 int	call_func(t_cmd *cmd, int input, int output, t_xe xe)
-{
+ {
 	if (ft_str_compare(cmd->args[0], "export"))
 	{
 		if (cmd->args[1] && ((cmd->prev != NULL) || (cmd->next != NULL)))

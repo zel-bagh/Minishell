@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:07:39 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/11/30 15:10:56 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:15:32 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,6 @@ int	get_value(char *a)
 	if (sign == -1)
 		return (0);
 	return (i + 1);
-}
-
-char	*get_string(int i)
-{
-	int		n;
-	int		save;
-	char	*s;
-
-	n = 1;
-	save = i;
-	while ((i / 10) != 0)
-	{
-		n++;
-		i = i / 10;
-	}
-	s = malloc((n + 1) * sizeof(char));
-	s[n] = '\0';
-	while ((save / 10) != 0)
-	{
-		s[--n] = (save % 10) + 48;
-		save = save / 10;
-	}
-	s[--n] = save + 48;
-	return (s);
 }
 
 void	change_shlvl(char **env)
