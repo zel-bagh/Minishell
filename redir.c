@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:53:57 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 02:48:00 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:59:18 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_last_node(t_red **j, t_red **red)
 	else
 	{
 		*j = red[0];
-		while((*j)->next)
+		while ((*j)->next)
 			*j = (*j)->next;
 		(*j)->next = malloc(sizeof(t_red));
 		*j = (*j)->next;
@@ -40,7 +40,8 @@ void	get_last_node(t_red **j, t_red **red)
 void	add_red(char *str, int *i, t_add_red c, int type)
 {
 	t_red	*j;
-	
+	char	a[2];
+
 	get_last_node(&j, c.red);
 	j->type = type;
 	if (type == 1 || type == 3)
@@ -51,8 +52,7 @@ void	add_red(char *str, int *i, t_add_red c, int type)
 	file_name(c.red_file, c.exit_status, &c.s, c.env);
 	if (!c.s)
 	{
-		char a[2];
-		a[0]= (char)130;
+		a[0] = (char)130;
 		a[1] = '\0';
 		c.s = ft_strjoin(a, c.red_file);
 	}

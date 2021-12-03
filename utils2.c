@@ -82,7 +82,7 @@ int	tab_len(char **s)
 	return (i);
 }
 
-int	get_wordlen(char *s, int i, char del)
+int	get_wordlen(char *s, int i)
 {
 	int	dbl;
 	int	sgl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:45:34 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/01 21:46:50 by oidrissi         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:46:16 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	manage_squotes(char **s, char *a, int i)
 void	file_name(char *a, int exit_status, char **s, char **env)
 {
 	char	tab[2];
-	char	i;
+	int		i;
 
 	i = 0;
 	tab[1] = '\0';

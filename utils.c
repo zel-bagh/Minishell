@@ -14,30 +14,30 @@
 
 int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
 		return (0);
 	while (s[i])
-			i++;
+		i++;
 	return (i);
 }
 
-int		ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0')
 		i++;
 	return (s1[i] - s2[i]);
 }
 
-int		ft_strncmp(char *s1, char *s2, int n)
+int	ft_strncmp(char *s1, char *s2, int n)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && i < n)
 		i++;
@@ -46,17 +46,17 @@ int		ft_strncmp(char *s1, char *s2, int n)
 
 char	*ft_strtrim(char *s)
 {
-	int i;
-	int len;
-	char *ret;
-	int j;
+	int		i;
+	int		len;
+	char	*ret;
+	int		j;
 
 	i = 0;
 	len = ft_strlen(s);
 	while (s[i] == ' ')
 		i++;
 	j = len - 1;
-	while(s[j] == ' ')
+	while (s[j] == ' ')
 		j--;
 	ret = (char *)malloc(sizeof(char) * (j - i + 2));
 	ret [j - i + 1] = '\0';
@@ -64,14 +64,14 @@ char	*ft_strtrim(char *s)
 	j = 0;
 	while (--len > 0)
 		ret[j++] = s[i++];
-	return ret;
+	return (ret);
 }
 
 char	*ft_strdup(char *s)
 {
-	int i;
-	int len;
-	char *ret;
+	int		i;
+	int		len;
+	char	*ret;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -84,5 +84,5 @@ char	*ft_strdup(char *s)
 		i++;
 	}
 	ret[i] = '\0';
-	return ret;
+	return (ret);
 }

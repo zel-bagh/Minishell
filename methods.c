@@ -64,7 +64,6 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-
 int	hold_s(int *dbl, int *j, int *i, char *s)
 {
 	if (s[*j] == '\'')

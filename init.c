@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:54:47 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 19:42:20 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:48:08 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	boucle_2(char **s, char *expanded, int status, char **env)
 
 void	free_args(char **arg)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (arg[++i])
@@ -50,7 +50,6 @@ t_cmd	*fill_sh(char *line, int exit_status, char **env)
 {
 	char	**args;
 	int		i;
-	int		j;
 	t_cmd	*cmd;
 
 	i = -1;

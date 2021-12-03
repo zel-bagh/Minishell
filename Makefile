@@ -14,7 +14,7 @@ CC = gcc
 LDFLAGS= -L /Users/$(USER)/goinfre/$(USER)/.brew/opt/readline/lib
 CPPFLAGS= -I /Users/$(USER)/goinfre/$(USER)/.brew/opt/readline/include
 READLINE = -lreadline $(LDFLAGS) $(CPPFLAGS)
-FLAGS = $(READLINE)
+FLAGS =  -Wextra -Werror -Wall $(READLINE)
 NAME = hell420
 
 SRC = minishell.c\
@@ -49,8 +49,6 @@ SRC = minishell.c\
 	execution/functions6.c \
 	execution/functions4.c \
 	execution/functions7.c
-
-
 
 all: $(NAME)
 

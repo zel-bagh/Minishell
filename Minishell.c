@@ -12,38 +12,11 @@
 
 #include "minishell.h"
 
-void	show_red(t_red *red)
-{
-	t_red *tmp;
-	tmp = red;
-	while(tmp)
-	{
-		printf("name =%s and type=%d \n", tmp->name, tmp->type);
-		tmp = tmp->next;
-	}
-}
-
-void	show_command()
-{
-	t_cmd *cmd;
-	int i;
-	
-	cmd = g_sh;
-	while(cmd)
-	{
-		i  = -1;
-		while(cmd->args[++i])
-	 		printf("COMMAND:%s\n", cmd->args[i]);
-		show_red(cmd->red);
-		cmd = cmd->next;
-	}
-}
-
 void	free_red(t_red *red)
 {
-	t_red *tmp;
+	t_red	*tmp;
 
-	while(red)
+	while (red)
 	{
 		free(red->name);
 		tmp = red->next;
@@ -52,12 +25,12 @@ void	free_red(t_red *red)
 	}
 }
 
-void	free_g_sh()
+void	free_g_sh(void)
 {
 	t_cmd	*cmd;
 
 	cmd = g_sh;
-	while(cmd)
+	while (cmd)
 	{
 		free_args(cmd->args);
 		free_red(cmd->red);
@@ -70,14 +43,13 @@ void	free_g_sh()
 
 void	boucle(char *line, char **env, int exit_status)
 {
-	change_env_to_heap(&env, 0, 0, -1);
 	while (1)
 	{
 		line = readline("Sh> ");
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
-			exit(1);
+			exit(0);
 		}
 		if (*line)
 			add_history(line);
@@ -85,32 +57,32 @@ void	boucle(char *line, char **env, int exit_status)
 		if (!parse(line))
 		{
 			write(1, "syntax error\n", 13);
-			continue;
+			continue ;
 		}
 		else if (parse(line) == 2)
 			continue ;
 		if (line)
 		{
-		g_sh = fill_sh(line, exit_status, env);
-		execute_command(g_sh, &exit_status, &env);
-		free_g_sh();
+			g_sh = fill_sh(line, exit_status, env);
+			execute_command(g_sh, &exit_status, &env, 0);
+			free_g_sh();
 		}
 	}
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-    char	*line;
-	int 	exit_status;
+	char	*line;
+	int		exit_status;
 
 	exit_status = 0;
+	line = NULL;
 	(void)av;
 	if (ac != 1)
 		return (0);
-	ignctl();
-	// signal(SIGINT, handlesig);
-	// signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handlesig);
+	signal(SIGQUIT, SIG_IGN);
+	change_env_to_heap(&env, 0, 0, -1);
 	boucle(line, env, exit_status);
-	free(line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/12/03 02:05:44 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:31:51 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ int	check_if_shell_builtin(char *exec)
 	return (0);
 }
 
-void	execute_command(t_cmd *cmd, int *exit_status, char ***env)
+void	execute_command(t_cmd *cmd, int *exit_status, char ***env, int id)
 {
-	int		id;
 	int		fdr[2];
 	int		fdw[2];
 	t_xe	xe;
@@ -72,12 +71,13 @@ void	execute_command(t_cmd *cmd, int *exit_status, char ***env)
 			*exit_status = shell_builtin(cmd, fdr, fdw, xe);
 		else
 		{
-			id = fork();
+			less_lines1(&id);
 			if (id == 0)
 				child_work(cmd, fdr, fdw, *env);
 		}
 		if (close_fd_pipes(*cmd, fdr, fdw))
 		{
+			less_lines2();
 			wait_for_children(id, exit_status, cmd->args[0]);
 			break ;
 		}

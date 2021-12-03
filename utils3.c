@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:56:59 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 18:43:01 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:45:47 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*get_token(char *s, int *pos, char del)
 	c = 0;
 	i = *pos;
 	len = ft_strlen(s);
-	word_len = get_wordlen(s, *pos, del);
+	word_len = get_wordlen(s, *pos);
 	ret = (char *)malloc(sizeof(char) * (word_len + 1));
 	while (i < len && c < word_len)
 	{

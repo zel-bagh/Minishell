@@ -6,7 +6,7 @@
 /*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 22:48:45 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 20:15:38 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:05:11 by zel-bagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*trim_whitespaces(char *s)
 {
-	int	i;
-	int	len;
-	char *a;
+	int		i;
+	int		len;
+	char	*a;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -88,7 +88,6 @@ int	proper_quotes(char *s)
 	int	sgl;
 	int	dbl;
 	int	len;
-	int	j;
 
 	len = ft_strlen(s);
 	sgl = 0;
@@ -125,7 +124,5 @@ int	parse(char *s)
 		return (0);
 	if (!proper_quotes(s))
 		return (0);
-	// if (!toomuch(s))
-	// 	return (0);
 	return (1);
 }
