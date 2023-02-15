@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 //create a new linked list
 t_cmd	*ft_lstnew(char **args, t_red *red)

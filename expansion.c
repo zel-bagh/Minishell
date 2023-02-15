@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:45:34 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 20:46:16 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:41:18 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 char	*searchin_env(char *tmp, char **env)
 {

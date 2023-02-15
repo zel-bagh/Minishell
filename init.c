@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:54:47 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 20:48:08 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:41:06 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	boucle_2(char **s, char *expanded, int status, char **env)
 {

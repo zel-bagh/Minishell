@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	free_red(t_red *red)
 {
@@ -41,6 +41,12 @@ void	free_g_sh(void)
 	g_sh = NULL;
 }
 
+void	p_help(char *line)
+{
+	write(1, "syntax error\n", 13);
+	free(line);
+}
+
 void	boucle(char *line, char **env, int exit_status)
 {
 	while (1)
@@ -56,7 +62,7 @@ void	boucle(char *line, char **env, int exit_status)
 		line = trim_whitespaces(line);
 		if (!parse(line))
 		{
-			write(1, "syntax error\n", 13);
+			p_help(line);
 			continue ;
 		}
 		else if (parse(line) == 2)
@@ -80,6 +86,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	if (ac != 1)
 		return (0);
+	ignctl();
 	signal(SIGINT, handlesig);
 	signal(SIGQUIT, SIG_IGN);
 	change_env_to_heap(&env, 0, 0, -1);

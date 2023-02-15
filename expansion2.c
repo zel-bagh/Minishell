@@ -6,11 +6,11 @@
 /*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:46:00 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/01 23:09:03 by oidrissi         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:41:13 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 char	*get_string(int i)
 {

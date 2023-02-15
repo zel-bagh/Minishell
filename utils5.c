@@ -6,11 +6,11 @@
 /*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 07:27:42 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/02 07:48:21 by oidrissi         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:40:22 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	hold2(int *i, int *c)
 {

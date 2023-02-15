@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:53:57 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 20:59:18 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:40:49 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	initi(t_add_red *c, int exit_status, char **env, t_red **red)
 {

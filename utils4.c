@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 22:48:45 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 21:05:11 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:40:22 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 char	*trim_whitespaces(char *s)
 {

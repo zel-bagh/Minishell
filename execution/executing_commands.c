@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing_commands.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 09:12:37 by zel-bagh          #+#    #+#             */
-/*   Updated: 2021/12/03 23:31:51 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:51:04 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	execute_command(t_cmd *cmd, int *exit_status, char ***env, int id)
 		}
 		if (close_fd_pipes(*cmd, fdr, fdw))
 		{
-			less_lines2();
 			wait_for_children(id, exit_status, cmd->args[0]);
+			less_lines2();
 			break ;
 		}
 		pipe(fdw);

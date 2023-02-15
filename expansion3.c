@@ -6,11 +6,11 @@
 /*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:47:02 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/01 21:47:11 by oidrissi         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:41:10 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 char	*copy_string(char *string)
 {

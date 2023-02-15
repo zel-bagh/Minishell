@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:56:59 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 20:45:47 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:40:31 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 char	*get_arg(char *str, int *i, int k)
 {

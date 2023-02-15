@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sigs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zel-bagh <zel-bagh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oidrissi <oidrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 22:46:09 by oidrissi          #+#    #+#             */
-/*   Updated: 2021/12/03 23:34:49 by zel-bagh         ###   ########.fr       */
+/*   Updated: 2021/12/03 23:40:46 by oidrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	handlesig(int i)
 {
